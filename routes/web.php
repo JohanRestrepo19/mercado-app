@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Product;
-use App\Models\Sale;
-use App\Models\User;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,14 +21,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sales', function () {
-    return ['sales' => Sale::with(['product', 'client'])->get()];
+// NOTE: Users routing
+Route::group(['prefix' => '/users', 'controller' => UserController::class], function () {
+    Route::get('/', 'index');
 });
 
-Route::get('/products', function () {
-    return ['products' => Product::with('sales')->get()];
+// NOTE: Products routing
+Route::group(['prefix' => '/products', 'controller' => ProductController::class], function () {
 });
 
-Route::get('/users', function () {
-    return ['users' => User::with('sales')->get()];
+// NOTE: Categories routing
+Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
+});
+
+// NOTE: Sales routing
+Route::group(['prefix' => '/sales', 'controller' => SaleController::class], function () {
 });
