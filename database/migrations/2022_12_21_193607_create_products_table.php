@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->bigInteger('category_id')->unsigned();
 			$table->string('name');
 			$table->text('description');
-			$table->float('price');
+			$table->float('price', 10, 2);
 			$table->integer('stock')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
