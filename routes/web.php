@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
@@ -39,5 +38,3 @@ Route::group(['prefix' => '/sales', 'controller' => SaleController::class], func
 });
 
 Auth::routes();
-
-/* Route::get('/', [HomeController::class, 'index'])->name('home'); */
