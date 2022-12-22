@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Product;
+use App\Models\Sale;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/sales', function () {
+    return ['sales' => Sale::with(['product', 'client'])->get()];
+});
+
+Route::get('/products', function () {
+    return ['products' => Product::with('sales')->get()];
+});
+
+Route::get('/users', function () {
+    return ['users' => User::with('sales')->get()];
 });
