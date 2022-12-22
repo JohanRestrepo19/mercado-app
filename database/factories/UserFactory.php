@@ -19,8 +19,8 @@ class UserFactory extends Factory
 	{
 		return [
 			'number_id' => fake()->randomNumber(9, true),
-			'name' => fake()->name(),
-			'last_name' => fake()->name(),
+			'name' => fake()->firstName(),
+			'last_name' => fake()->lastName(),
 			'email' => fake()->unique()->safeEmail(),
 			'password' => bcrypt('123456789'),
 		];
