@@ -36,6 +36,7 @@ Route::group(['prefix' => '/products', 'controller' => ProductController::class]
 
 // NOTE: Categories routing
 Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
+    Route::get('/{category}', 'showCategoryWithProducts');
 });
 
 // NOTE: Sales routing

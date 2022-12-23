@@ -1,6 +1,8 @@
 <template>
     <div class="card mb-4">
-        <h2 class="card-header">{{ category.name }}</h2>
+        <a :href="`/categories/${category.id}`">
+            <h2 class="card-header">{{ category.name }}</h2>
+        </a>
         <div class="d-flex flex-wrap justify-content-evenly mb-4">
             <!-- Product Card -->
             <product-card
@@ -19,6 +21,9 @@
         components: { ProductCard },
         data() {
             return {}
+        },
+        mounted() {
+            console.log(this.category)
         },
         props: ['category']
     }

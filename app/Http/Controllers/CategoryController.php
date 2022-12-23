@@ -24,8 +24,9 @@ class CategoryController extends Controller
         return $categories;
     }
 
-    public function categoryWithProducts(Category $category)
+    public function showCategoryWithProducts(Category $category)
     {
-        return $category->load('products');
+        $category->load('products');
+        return view('categories.category-page', compact('category'));
     }
 }
