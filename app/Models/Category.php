@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-	use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-	// NOTE: Relationships
-	public function products()
-	{
-		return $this->hasMany(Product::class, 'category_id', 'id');
-	}
+    // NOTE: Relationships
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
 }

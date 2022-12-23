@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['prefix' => '/test'], function () {
+    Route::get('/', [CategoryController::class, 'getAllCategoriesPreview']);
+    Route::get('/category/{category}', [CategoryController::class, 'categoryWithProducts']);
+});
+
 Route::get('/', [CategoryController::class, 'showAllCategoriesWithProducts'])->name('home');
 
 // NOTE: Users routing
