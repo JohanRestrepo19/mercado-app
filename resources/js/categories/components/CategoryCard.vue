@@ -5,26 +5,20 @@
         </a>
         <div class="d-flex flex-wrap justify-content-evenly mb-4">
             <!-- Product Card -->
-            <product-card
-                v-for="product in category.products"
-                :key="product.id"
-                :product="product"
-                :shortDesc="true"
-            />
+            <product-card v-for="product in category.products" :key="product.id" :product="product" :shortDesc="true" />
         </div>
     </div>
 </template>
 
 <script>
-    import ProductCard from '../../products/components/ProductCard.vue'
-    export default {
-        components: { ProductCard },
-        data() {
-            return {}
-        },
-        mounted() {
-            console.log(this.category)
-        },
-        props: ['category']
-    }
+import ProductCard from '../../products/components/ProductCard.vue'
+
+export default {
+    components: { ProductCard },
+    data() {
+        return {}
+    },
+    mounted() { },
+    props: ['category']
+}
 </script>

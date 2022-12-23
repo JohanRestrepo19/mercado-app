@@ -9,9 +9,6 @@
     import CategoryCard from './categories/components/CategoryCard.vue'
     export default {
         components: { CategoryCard },
-        props: ['categories'],
-        mounted() {
-            console.log(this.categories)
-        }
+        props: ['categories']
     }
 </script>
