@@ -1,10 +1,10 @@
 import './bootstrap'
 import { createApp } from 'vue'
-import HomeComponent from './components/HomeComponent.vue'
+import HomePage from './HomePage.vue'
 
 const app = createApp({
     components: {
-        HomeComponent
+        HomePage
     }
 })
 

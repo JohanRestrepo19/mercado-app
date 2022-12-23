@@ -1,3 +1,3 @@
 <x-layouts.app>
-    <home-component :categories="{{$categories}}" />
+    <home-page :categories="{{$categories}}" />
 </x-layouts.app>

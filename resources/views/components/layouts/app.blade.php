@@ -23,7 +23,7 @@
 
 <body>
     <x-menu />
-    <main id="app" class="bg-info">
+    <main id="app">
         <div class="contianer ">
             {{$slot}}
         </div>
