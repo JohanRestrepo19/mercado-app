@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// NOTE: test routing
 Route::group(['prefix' => '/test'], function () {
     Route::get('/', [CategoryController::class, 'getAllCategoriesPreview']);
     Route::get('/category/{category}', [CategoryController::class, 'categoryWithProducts']);
@@ -27,7 +28,7 @@ Route::get('/', [CategoryController::class, 'showAllCategoriesWithProducts'])->n
 
 // NOTE: Users routing
 Route::group(['prefix' => '/users', 'controller' => UserController::class], function () {
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('users');
 });
 
 // NOTE: Products routing
