@@ -10,6 +10,15 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $appends = ['short_description'];
+
+    // NOTE: Accesors
+    public function getShortDescriptionAttribute()
+    {
+        $short = str($this->description)->substr(0, 27);
+        return "{$short}...";
+    }
+
     // NOTE: Relationships
     public function category()
     {

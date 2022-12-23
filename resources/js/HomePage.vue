@@ -11,7 +11,6 @@
         components: { CategoryCard },
         props: ['categories'],
         mounted() {
-            console.log('Component mounted.')
             console.log(this.categories)
         }
     }
