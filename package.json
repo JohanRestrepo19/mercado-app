@@ -6,6 +6,7 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
+        "@types/jquery": "^3.5.14",
         "@vitejs/plugin-vue": "^3.0.1",
         "axios": "^1.1.2",
         "bootstrap": "^5.2.3",
@@ -16,5 +17,9 @@
         "sass": "^1.56.1",
         "vite": "^3.0.0",
         "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "datatables.net-bs5": "^1.13.1",
+        "jquery": "^3.6.3"
     }
 }
