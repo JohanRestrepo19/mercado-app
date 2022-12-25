@@ -40,14 +40,15 @@
     export default {
         data() {
             return {
-                usersArr: []
+                usersArr: [],
+                dataTable: null
             }
         },
         props: ['users'],
         methods: {
             mountDataTable() {
                 this.$nextTick(() => {
-                    new DataTable('#usersTable')
+                    this.dataTable = new DataTable('#usersTable')
                 })
             },
             async handleClickDelete(userId) {
