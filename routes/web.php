@@ -30,6 +30,7 @@ Route::get('/', [CategoryController::class, 'showAllCategoriesWithProducts'])->n
 Route::group(['prefix' => '/users', 'controller' => UserController::class], function () {
     Route::get('/', 'index')->name('users');
     Route::get('/create', 'create');
+    Route::delete('/delete/{user}', 'delete');
 });
 
 // NOTE: Products routing
