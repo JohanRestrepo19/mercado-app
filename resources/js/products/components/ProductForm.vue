@@ -47,7 +47,7 @@
 
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-primary" href="/users">Volver</a>
-                    <button class="btn btn-success">{{ this.action }} usuario</button>
+                    <button class="btn btn-success">{{ this.action }} producto</button>
                 </div>
             </form>
         </div>
@@ -81,24 +81,23 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            console.log(this.form)
-            /* this.errors = null */
-            /* try { */
-            /*     if (this.creating) { */
-            /*         await axios.post('/users/create', this.form) */
-            /*         showToastNotification('Usuario Creado!') */
-            /*         this.$refs.form.reset() */
-            /*     } else { */
-            /*         await axios.post(`/users/${this.userInfo.id}`, this.form) */
-            /*         showToastNotification('Usuario Editado!') */
-            /*     } */
-            /* } catch (error) { */
-            /*     this.errors = error.response.data.errors */
-            /* } */
+            this.errors = null
+            try {
+                if (this.creating) {
+                    await axios.post('/products/create', this.form)
+                    showToastNotification('Producto creado!')
+                    this.$refs.form.reset()
+                } else {
+                    await axios.post(`/products/${this.productInfo.id}`, this.form)
+                    showToastNotification('Producto editado!')
+                }
+            } catch (error) {
+                this.errors = error.response.data.errors
+            }
         }
     },
     mounted() {
-        this.form = this.userInfo
+        this.form = this.productInfo
         console.log(this.form)
         console.log(this.categories)
     },
@@ -107,11 +106,11 @@ export default {
             type: Boolean,
             default: true
         },
-        userInfo: {
+        productInfo: {
             type: Object,
             default: initialForm
         },
-        categories: { type: Array }
+        categories: { default: [] }
     }
 }
 </script>

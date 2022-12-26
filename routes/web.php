@@ -40,6 +40,7 @@ Route::group(['prefix' => '/users', 'controller' => UserController::class], func
 Route::group(['prefix' => '/products', 'controller' => ProductController::class], function () {
     Route::get('/', 'index')->name('products');
     Route::get('/create', 'create');
+    Route::post('/create', 'store');
     Route::delete('/delete/{product}', 'delete');
 });
 

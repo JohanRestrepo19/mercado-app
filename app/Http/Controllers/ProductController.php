@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\CreateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -24,5 +25,12 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         return view('products.create', compact('categories'));
+    }
+
+    public function store(CreateProductRequest $request)
+    {
+        $product = new Product($request->all());
+        $product->save();
+        return response()->json(['product' => $product]);
     }
 }

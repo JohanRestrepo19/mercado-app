@@ -10,6 +10,19 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'category_id',
+        'name',
+        'description',
+        'price',
+        'stock',
+    ];
+
     protected $appends = ['short_description'];
 
     // NOTE: Accesors
