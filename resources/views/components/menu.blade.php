@@ -35,8 +35,14 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <!-- Users table -->
                         <a class="dropdown-item" href="{{ route('users') }}">
                             Usuarios
+                        </a>
+
+                        <!-- Products table -->
+                        <a class="dropdown-item" href="{{ route('products') }}">
+                            Productos
                         </a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

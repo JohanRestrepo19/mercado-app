@@ -1,25 +1,27 @@
 <template>
-    <table class="table table-responsive" id="usersTable">
+    <table class="table table-responsive" id="productsTable">
         <thead>
             <tr>
                 <th>id</th>
-                <th>Cédula</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
+                <th>Categoria</th>
+                <th>Descripción</th>
+                <th>Price</th>
+                <th>Stock</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="user in usersArr" :key="user.id">
-                <td>{{ user.id }}</td>
-                <td>{{ user.number_id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.last_name }}</td>
-                <td>{{ user.email }}</td>
+            <tr v-for="product in productsArr" :key="product.id">
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category_id }}</td>
+                <td>{{ product.short_description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
                 <td class="d-flex">
-                    <a class="btn btn-info mx-2" :href="`/users/${user.id}/edit`">Editar</a>
-                    <button @click="handleClickDelete(user.id)" type="button" class="btn btn-danger mx-2">
+                    <a class="btn btn-info mx-2" :href="`/products/${product.id}/edit`">Editar</a>
+                    <button @click="handleClickDelete(product.id)" type="button" class="btn btn-danger mx-2">
                         Eliminar
                     </button>
                 </td>
@@ -36,21 +38,22 @@ import { showConfirmationAlert } from '../../utils/notifications'
 export default {
     data() {
         return {
-            usersArr: [],
+            productsArr: [],
             dataTable: null
         }
     },
-    props: ['users'],
+    props: ['products'],
     methods: {
         mountDataTable() {
             this.$nextTick(() => {
-                this.dataTable = new DataTable('#usersTable')
+                // NOTE: Posible breking point
+                return new DataTable('#productsTable')
             })
         },
         async handleClickDelete(userId) {
             const confirmation = await showConfirmationAlert()
             if (confirmation) {
-                this.usersArr = this.usersArr.filter(user => user.id !== userId)
+                this.usersArr = this.productsArr.filter(user => user.id !== userId)
                 this.deleteUserRequest(userId)
             }
             return
@@ -64,8 +67,9 @@ export default {
         }
     },
     mounted() {
-        this.usersArr = this.users
-        this.mountDataTable()
+        this.productsArr = this.products
+        this.dataTable = this.mountDataTable()
+        console.log(this.productsArr)
     }
 }
 </script>

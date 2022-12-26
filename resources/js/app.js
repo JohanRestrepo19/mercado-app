@@ -5,6 +5,7 @@ import CategoryPage from './categories/pages/CategoryPage.vue'
 import UserIndex from './users/pages/UserIndex.vue'
 import UserCreate from './users/pages/UserCreate.vue'
 import UserEdit from './users/pages/UserEdit.vue'
+import ProductIndex from './products/pages/ProductIndex.vue'
 
 const app = createApp({
     components: {
@@ -12,7 +13,8 @@ const app = createApp({
         CategoryPage,
         UserIndex,
         UserCreate,
-        UserEdit
+        UserEdit,
+        ProductIndex
     }
 })
 

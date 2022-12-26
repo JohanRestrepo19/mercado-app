@@ -12,3 +12,18 @@ export const showToastNotification = async (msg = '') => {
         title: msg
     })
 }
+
+export const showConfirmationAlert = async () => {
+    const result = await Swal.fire({
+        title: 'Estás seguro?',
+        text: 'No podrás revertir la acción',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+    })
+    if (result.isConfirmed) return true
+    return false
+}
