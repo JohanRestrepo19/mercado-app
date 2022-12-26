@@ -21,32 +21,52 @@
                 <!-- Description -->
                 <div class="mb-3">
                     <label for="last_name" class="form-label">Descripción</label>
-                    <textarea name="description" class="form-control" v-model="form.description"></textarea>
+                    <textarea
+                        name="description"
+                        class="form-control"
+                        v-model="form.description"
+                    ></textarea>
                     <!-- <input type="text" name="last_name" class="form-control" id="last_name" v-model="form.last_name" /> -->
                 </div>
 
                 <!-- Category Id -->
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Categoria</label>
-                    <v-select :options="categories" label="name" :reduce="category => category.id"
-                        v-model="form.category_id" />
+                    <v-select
+                        :options="categories"
+                        label="name"
+                        :reduce="category => category.id"
+                        v-model="form.category_id"
+                    />
                     <!-- <input type="number" name="number_id" class="form-control" v-model="form.number_id" /> -->
                 </div>
 
                 <!-- Price -->
                 <div class="mb-3">
                     <label for="price" class="form-label">Precio</label>
-                    <input type="number" min="0" name="price" class="form-control" v-model="form.price" />
+                    <input
+                        type="number"
+                        min="0"
+                        name="price"
+                        class="form-control"
+                        v-model="form.price"
+                    />
                 </div>
 
                 <!-- Stock -->
                 <div class="mb-3">
                     <label for="stock" class="form-label">Stock</label>
-                    <input type="number" min="1" class="form-control" id="stock" v-model="form.stock" />
+                    <input
+                        type="number"
+                        min="1"
+                        class="form-control"
+                        id="stock"
+                        v-model="form.stock"
+                    />
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a class="btn btn-primary" href="/users">Volver</a>
+                    <a class="btn btn-primary" href="/products">Volver</a>
                     <button class="btn btn-success">{{ this.action }} producto</button>
                 </div>
             </form>
@@ -55,62 +75,62 @@
 </template>
 
 <script>
-import axios from 'axios'
-import ErrorsAlert from '../../components/ErrorsAlert.vue'
-import { showToastNotification } from '../../utils/notifications'
-const initialForm = {
-    name: '',
-    description: '',
-    category_id: '',
-    price: '',
-    stock: ''
-}
-
-export default {
-    components: { ErrorsAlert },
-    computed: {
-        action() {
-            return this.creating ? 'Crear' : 'Editar'
-        }
-    },
-    data() {
-        return {
-            form: {},
-            errors: null
-        }
-    },
-    methods: {
-        async handleSubmit() {
-            this.errors = null
-            try {
-                if (this.creating) {
-                    await axios.post('/products/create', this.form)
-                    showToastNotification('Producto creado!')
-                    this.$refs.form.reset()
-                } else {
-                    await axios.post(`/products/${this.productInfo.id}`, this.form)
-                    showToastNotification('Producto editado!')
-                }
-            } catch (error) {
-                this.errors = error.response.data.errors
-            }
-        }
-    },
-    mounted() {
-        this.form = this.productInfo
-        console.log(this.form)
-        console.log(this.categories)
-    },
-    props: {
-        creating: {
-            type: Boolean,
-            default: true
-        },
-        productInfo: {
-            type: Object,
-            default: initialForm
-        },
-        categories: { default: [] }
+    import axios from 'axios'
+    import ErrorsAlert from '../../components/ErrorsAlert.vue'
+    import { showToastNotification } from '../../utils/notifications'
+    const initialForm = {
+        name: '',
+        description: '',
+        category_id: '',
+        price: '',
+        stock: ''
     }
-}
+
+    export default {
+        components: { ErrorsAlert },
+        computed: {
+            action() {
+                return this.creating ? 'Crear' : 'Editar'
+            }
+        },
+        data() {
+            return {
+                form: {},
+                errors: null
+            }
+        },
+        methods: {
+            async handleSubmit() {
+                this.errors = null
+                try {
+                    if (this.creating) {
+                        await axios.post('/products/create', this.form)
+                        showToastNotification('Producto creado!')
+                        this.$refs.form.reset()
+                    } else {
+                        await axios.post(`/products/${this.productInfo.id}`, this.form)
+                        showToastNotification('Producto editado!')
+                    }
+                } catch (error) {
+                    this.errors = error.response.data.errors
+                }
+            }
+        },
+        mounted() {
+            this.form = this.productInfo
+            console.log(this.form)
+            console.log(this.categories)
+        },
+        props: {
+            creating: {
+                type: Boolean,
+                default: true
+            },
+            productInfo: {
+                type: Object,
+                default: initialForm
+            },
+            categories: { default: [] }
+        }
+    }
 </script>

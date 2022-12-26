@@ -8,6 +8,7 @@ import UserCreate from './users/pages/UserCreate.vue'
 import UserEdit from './users/pages/UserEdit.vue'
 import ProductIndex from './products/pages/ProductIndex.vue'
 import ProductCreate from './products/pages/ProductCreate.vue'
+import ProductEdit from './products/pages/ProductEdit.vue'
 
 const app = createApp({
     components: {
@@ -17,7 +18,8 @@ const app = createApp({
         UserCreate,
         UserEdit,
         ProductIndex,
-        ProductCreate
+        ProductCreate,
+        ProductEdit
     }
 })
 

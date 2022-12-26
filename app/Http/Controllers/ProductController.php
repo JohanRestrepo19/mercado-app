@@ -33,4 +33,16 @@ class ProductController extends Controller
         $product->save();
         return response()->json(['product' => $product]);
     }
+
+    public function edit(Product $product)
+    {
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'categories'));
+    }
+
+    public function update(Product $product, CreateProductRequest $request)
+    {
+        $product->update($request->all());
+        return response()->json(['product' => $product->refresh()]);
+    }
 }
