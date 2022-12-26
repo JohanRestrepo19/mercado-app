@@ -1,5 +1,6 @@
 import './bootstrap'
 import { createApp } from 'vue'
+import VueSelect from 'vue-select'
 import HomePage from './HomePage.vue'
 import CategoryPage from './categories/pages/CategoryPage.vue'
 import UserIndex from './users/pages/UserIndex.vue'
@@ -20,4 +21,4 @@ const app = createApp({
     }
 })
 
-app.mount('#app')
+app.component('v-select', VueSelect).mount('#app')

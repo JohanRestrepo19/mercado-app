@@ -28,8 +28,8 @@
                 <!-- Category Id -->
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Categoria</label>
-                    <!-- TODO: User el componente de v-select -->
-                    <select name="category_id" class="form-select" v-model="form.category_id"></select>
+                    <v-select :options="categories" label="name" :reduce="category => category.id"
+                        v-model="form.category_id" />
                     <!-- <input type="number" name="number_id" class="form-control" v-model="form.number_id" /> -->
                 </div>
 
@@ -100,6 +100,7 @@ export default {
     mounted() {
         this.form = this.userInfo
         console.log(this.form)
+        console.log(this.categories)
     },
     props: {
         creating: {
@@ -109,7 +110,8 @@ export default {
         userInfo: {
             type: Object,
             default: initialForm
-        }
+        },
+        categories: { type: Array }
     }
 }
 </script>

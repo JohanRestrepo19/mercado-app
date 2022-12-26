@@ -1,3 +1,3 @@
 <x-layouts.app>
-    <product-create />
+    <product-create :categories="{{$categories}}" />
 </x-layouts.app>
