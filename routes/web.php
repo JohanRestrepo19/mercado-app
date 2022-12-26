@@ -39,6 +39,8 @@ Route::group(['prefix' => '/users', 'controller' => UserController::class], func
 // NOTE: Products routing
 Route::group(['prefix' => '/products', 'controller' => ProductController::class], function () {
     Route::get('/', 'index')->name('products');
+    Route::get('/create', 'create');
+    Route::delete('/delete/{product}', 'delete');
 });
 
 // NOTE: Categories routing

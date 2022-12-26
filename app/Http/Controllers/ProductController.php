@@ -12,4 +12,15 @@ class ProductController extends Controller
         $products = Product::all();
         return view('products.index', compact('products'));
     }
+
+    public function delete(Product $product)
+    {
+        $result = $product->delete();
+        return response()->json(['result' => $result]);
+    }
+
+    public function create()
+    {
+        return view('products.create');
+    }
 }

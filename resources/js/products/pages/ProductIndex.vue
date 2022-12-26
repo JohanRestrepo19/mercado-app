@@ -3,11 +3,10 @@
         <div class="card m-5">
             <div class="card-header d-flex justify-content-between">
                 <h2>Productos</h2>
-                <a href="" class="btn btn-primary"> Crear Producto </a>
+                <a href="/products/create" class="btn btn-primary"> Crear Producto </a>
             </div>
 
             <div class="card-boyd p-4">
-                <!-- TODO: Poner el componente de products table -->
                 <products-table :products="products" />
             </div>
         </div>

@@ -6,7 +6,7 @@
                 <th>Nombre</th>
                 <th>Categoria</th>
                 <th>Descripción</th>
-                <th>Price</th>
+                <th>Precio</th>
                 <th>Stock</th>
                 <th>Acciones</th>
             </tr>
@@ -50,17 +50,18 @@ export default {
                 return new DataTable('#productsTable')
             })
         },
-        async handleClickDelete(userId) {
+        async handleClickDelete(productId) {
             const confirmation = await showConfirmationAlert()
             if (confirmation) {
-                this.usersArr = this.productsArr.filter(user => user.id !== userId)
-                this.deleteUserRequest(userId)
+                this.productsArr = this.productsArr.filter(product => product.id !== productId)
+                this.deleteProductRequest(productId)
             }
             return
         },
-        async deleteUserRequest(userId) {
+        async deleteProductRequest(productId) {
             try {
-                await axios.delete(`/users/delete/${userId}`)
+                const { data } = await axios.delete(`/products/delete/${productId}`)
+                console.log(data)
             } catch (error) {
                 console.error(error)
             }

@@ -22,8 +22,8 @@ class UserController extends Controller
 
     public function delete(User $user)
     {
-        $user->delete();
-        return response()->json(['msg' => 'fuiste eliminado', 'user' => $user]);
+        $result = $user->delete();
+        return response()->json([ 'result' => $result]);
     }
 
     public function store(CreateUserRequest $request)
