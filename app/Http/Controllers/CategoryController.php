@@ -18,8 +18,8 @@ class CategoryController extends Controller
         $categories = Category::with('products')
             ->get()
             ->map(function ($category) {
-                $shiftedProducts = $category->products->shift(4);
-                return [...$category->toArray(), 'products' => $shiftedProducts];
+                $randomProducts = $category->products->random(4);
+                return [...$category->toArray(), 'products' => $randomProducts];
             });
         return $categories;
     }
