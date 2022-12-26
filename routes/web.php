@@ -32,6 +32,8 @@ Route::group(['prefix' => '/users', 'controller' => UserController::class], func
     Route::get('/create', 'create');
     Route::post('/create', 'store');
     Route::delete('/delete/{user}', 'delete');
+    Route::get('/{user}/edit', 'edit');
+    Route::post('/{user}', 'updateUser');
 });
 
 // NOTE: Products routing

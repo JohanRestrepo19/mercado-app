@@ -18,7 +18,7 @@
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
                 <td class="d-flex">
-                    <button type="button" class="btn btn-info mx-2">Editar</button>
+                    <a class="btn btn-info mx-2" :href="`/users/${user.id}/edit`">Editar</a>
                     <button
                         @click="handleClickDelete(user.id)"
                         type="button"
@@ -55,7 +55,6 @@
                 const confirmation = await this.showConfirmationAlert()
                 if (confirmation) {
                     this.usersArr = this.usersArr.filter(user => user.id !== userId)
-                    // Hacer la petición para eliminar en base de datos
                     this.deleteUserRequest(userId)
                 }
                 return

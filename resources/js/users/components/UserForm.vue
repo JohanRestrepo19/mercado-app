@@ -4,7 +4,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h1>Crear Usuario</h1>
+            <h1>
+                <span>{{ this.action }}</span>
+                Usuario
+            </h1>
         </div>
         <div class="card-body">
             <!-- Create user form -->
@@ -77,7 +80,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-primary" href="/users">Volver</a>
-                    <button class="btn btn-success">Crear usuario</button>
+                    <button class="btn btn-success">{{ this.action }} usuario</button>
                 </div>
             </form>
         </div>
@@ -99,22 +102,46 @@
 
     export default {
         components: { ErrorsAlert },
+        computed: {
+            action() {
+                return this.creating ? 'Crear' : 'Editar'
+            }
+        },
         data() {
             return {
-                form: initialForm,
+                form: {},
                 errors: null
             }
         },
         methods: {
             async handleSubmit() {
+                this.errors = null
                 try {
-                    this.errors = null
-                    await axios.post('/users/create', this.form)
-                    showToastNotification()
-                    this.$refs.form.reset()
+                    if (this.creating) {
+                        await axios.post('/users/create', this.form)
+                        showToastNotification('Usuario Creado!')
+                        this.$refs.form.reset()
+                    } else {
+                        await axios.post(`/users/${this.userInfo.id}`, this.form)
+                        showToastNotification('Usuario Editado!')
+                    }
                 } catch (error) {
                     this.errors = error.response.data.errors
                 }
+            }
+        },
+        mounted() {
+            this.form = this.userInfo
+            console.log(this.form)
+        },
+        props: {
+            creating: {
+                type: Boolean,
+                default: true
+            },
+            userInfo: {
+                type: Object,
+                default: initialForm
             }
         }
     }

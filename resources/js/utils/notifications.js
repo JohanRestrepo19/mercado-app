@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2'
 
-export const showToastNotification = async () => {
+export const showToastNotification = async (msg = '') => {
     Swal.fire({
         toast: true,
         position: 'top-right',
@@ -9,6 +9,6 @@ export const showToastNotification = async () => {
         timer: 2000,
         timerProgressBar: true,
         icon: 'success',
-        title: 'Usuario creado!'
+        title: msg
     })
 }
