@@ -1,6 +1,10 @@
 <template>
     <!-- Product Card -->
-    <div class="card my-4" style="width: 15rem">
+    <div
+        class="card my-4 styled-card"
+        style="width: 15rem"
+        @click="handleClickCard(this.product.id)"
+    >
         <img src="https://api.lorem.space/image/book?w=200" class="card-img-top" alt="..." />
         <div class="card-body">
             <h5 class="card-title fw-bold">{{ product.name }}</h5>
@@ -16,6 +20,11 @@
         data() {
             return {}
         },
+        methods: {
+            async handleClickCard(productId) {
+                window.location = `/products/${productId}`
+            }
+        },
         props: {
             product: Object,
             shortDesc: {
@@ -25,3 +34,14 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .styled-card {
+        transition: transform 0.5s;
+    }
+
+    .styled-card:hover {
+        transform: scale(1.15);
+        cursor: pointer;
+    }
+</style>

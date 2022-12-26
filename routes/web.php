@@ -44,6 +44,7 @@ Route::group(['prefix' => '/products', 'controller' => ProductController::class]
     Route::delete('/delete/{product}', 'delete');
     Route::get('/{product}/edit', 'edit');
     Route::post('/{product}', 'update');
+    Route::get('/{product}', 'show');
 });
 
 // NOTE: Categories routing

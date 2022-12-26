@@ -45,4 +45,10 @@ class ProductController extends Controller
         $product->update($request->all());
         return response()->json(['product' => $product->refresh()]);
     }
+
+    public function show(Product $product)
+    {
+        $product->load('category');
+        return view('products.show', compact('product'));
+    }
 }
