@@ -14,13 +14,16 @@
                         alt="..."
                     />
                 </div>
-                <!-- Counter -->
+                <!-- Quantity -->
                 <div>
                     <button class="btn btn-primary" @click="handleClickSub">-</button>
-                    <strong class="btn" @click="handleClickReset">{{ counter }}</strong>
+                    <strong class="btn" @click="handleClickReset">{{ quantity }}</strong>
                     <button class="btn btn-primary" @click="handleClickAdd">+</button>
                 </div>
-                <a href="#" class="btn btn-success mt-4">Añadir al carrito</a>
+                <!-- <a href="#" class="btn btn-success mt-4">Añadir al carrito</a> -->
+                <button class="btn btn-success mt-4" @click="handleClickAddToCart">
+                    Añadir al carrito
+                </button>
             </div>
             <div class="card-footer text-bold d-flex justify-content-evenly">
                 <p><strong>Stock</strong>: {{ available }} Unidades</p>
@@ -31,29 +34,41 @@
 </template>
 
 <script>
+    import { addProductToCart } from '../../utils/localStorageHandler'
     export default {
         computed: {
             available() {
-                return this.product.stock - this.counter
+                return this.product.stock - this.quantity
             }
         },
         data() {
             return {
-                counter: 0
+                quantity: 0
             }
         },
         methods: {
             handleClickAdd() {
-                if (this.counter < this.product.stock) this.counter++
+                if (this.quantity < this.product.stock) this.quantity++
             },
             handleClickSub() {
-                if (this.counter > 0) this.counter--
+                if (this.quantity > 0) this.quantity--
             },
             handleClickReset() {
-                this.counter = 0
+                this.quantity = 0
+            },
+            handleClickAddToCart() {
+                if (this.quantity === 0) return
+                if (!this.authentication.authenticated) return (window.location = '/login')
+                addProductToCart(
+                    { ...this.product, quantity: this.quantity },
+                    this.authentication.userId
+                )
             }
         },
-        props: ['product']
+        mounted() {
+            console.log(this.authentication)
+        },
+        props: ['product', 'authentication']
     }
 </script>
 
