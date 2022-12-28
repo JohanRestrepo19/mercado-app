@@ -8,8 +8,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
-/* use Illuminate\Http\Request; */
-
 class UserController extends Controller
 {
     public function index()
@@ -47,15 +45,27 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $user->load('roles');
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(User $user, UpdateUserRequest $request)
     {
-        $fields = $request->all();
-        if (isset($fields['password']))
-            if (!$fields['password']) unset($allRequestInfo['password']);
-        $user->update($fields);
+        try {
+            DB::beginTransaction();
+
+            $fields = $request->all();
+            if (isset($fields['password']))
+                if (!$fields['password']) unset($allRequestInfo['password']);
+            $user->update($fields);
+            $user->syncRoles($request->role);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
         return response()->json(['user' => $user->fresh()]);
     }
 }

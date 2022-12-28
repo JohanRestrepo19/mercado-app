@@ -1,6 +1,6 @@
 <template>
     <div class="container py-4">
-        <user-form :creating="false" :userInfo="user" />
+        <user-form :creating="false" :roles="roles" :userInfo="user" />
     </div>
 </template>
 
@@ -11,6 +11,9 @@
         data() {
             return {}
         },
-        props: ['user']
+        props: {
+            roles: { type: Object, required: true },
+            user: { type: Object, required: true }
+        }
     }
 </script>
