@@ -10,7 +10,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -29,30 +28,29 @@
                 </li>
                 @endif
                 @else
+                <!-- Cart page -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('cart') }}">Carrito</a>
+                </li>
+
+                @role('admin')
+                <!-- Users table -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users') }}">Usuarios</a>
+                </li>
+
+                <!-- Products table -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('products') }}">Productos</a>
+                </li>
+                @endrole
+
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                        <!-- Cart -->
-                        <a class="dropdown-item" href="{{ route('cart') }}">
-                            Carrito
-                        </a>
-
-                        @role('admin')
-                        <!-- Users table -->
-                        <a class="dropdown-item" href="{{ route('users') }}">
-                            Usuarios
-                        </a>
-
-                        <!-- Products table -->
-                        <a class="dropdown-item" href="{{ route('products') }}">
-                            Productos
-                        </a>
-                        @endrole
-
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
