@@ -1,6 +1,6 @@
 <template>
     <div class="container py-4">
-        <user-form />
+        <user-form :roles="roles" />
     </div>
 </template>
 
@@ -10,6 +10,9 @@
         components: { UserForm },
         data() {
             return {}
+        },
+        props: {
+            roles: { type: Object, required: true }
         }
     }
 </script>

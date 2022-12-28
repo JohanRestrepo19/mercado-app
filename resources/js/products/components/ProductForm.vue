@@ -118,8 +118,6 @@
         },
         mounted() {
             this.form = this.productInfo
-            console.log(this.form)
-            console.log(this.categories)
         },
         props: {
             creating: {

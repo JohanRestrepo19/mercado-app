@@ -1,3 +1,3 @@
 <x-layouts.app>
-    <user-create />
+    <user-create :roles="{{$roles}}" />
 </x-layouts.app>

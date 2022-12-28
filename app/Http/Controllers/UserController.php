@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+
 /* use Illuminate\Http\Request; */
 
 class UserController extends Controller
@@ -17,19 +20,28 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     public function delete(User $user)
     {
         $result = $user->delete();
-        return response()->json([ 'result' => $result]);
+        return response()->json(['result' => $result]);
     }
 
     public function store(CreateUserRequest $request)
     {
-        $user = new User($request->all());
-        $user->save();
+        try {
+            DB::beginTransaction();
+            $user = new User($request->all());
+            $user->save();
+            $user->assignRole($request->role);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
         return response()->json(['user' => $user]);
     }
 

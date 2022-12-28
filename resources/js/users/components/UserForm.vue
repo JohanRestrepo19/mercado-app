@@ -11,7 +11,6 @@
         </div>
         <div class="card-body">
             <!-- Create user form -->
-            <!-- TODO: Manejar los campos basicos para despues incluir el rol cuando todo funcione -->
             <form class="mx-4" @submit.prevent="handleSubmit" ref="form">
                 <!-- Nombre -->
                 <div class="mb-3">
@@ -46,6 +45,17 @@
                         class="form-control"
                         id="number_id"
                         v-model="form.number_id"
+                    />
+                </div>
+
+                <!-- Category Id -->
+                <div class="mb-3">
+                    <label for="role" class="form-label">Rol</label>
+                    <v-select
+                        :options="roles"
+                        label="name"
+                        :reduce="role => role.name"
+                        v-model="form.role"
                     />
                 </div>
 
@@ -95,6 +105,7 @@
         name: '',
         last_name: '',
         number_id: '',
+        role: '',
         email: '',
         password: '',
         password_confirmation: ''
@@ -132,7 +143,6 @@
         },
         mounted() {
             this.form = this.userInfo
-            console.log(this.form)
         },
         props: {
             creating: {
@@ -142,7 +152,8 @@
             userInfo: {
                 type: Object,
                 default: initialForm
-            }
+            },
+            roles: { default: [] }
         }
     }
 </script>
