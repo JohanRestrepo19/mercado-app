@@ -21,13 +21,15 @@ class DatabaseSeeder extends Seeder
             CategorySeed::class,
             UserSeed::class,
             ProductSeed::class,
-            SaleSeed::class
+            SaleSeed::class,
         ]);
 
-        User::factory(10)->create();
+        User::factory(20)->create();
         Product::factory(50)->create();
-        User::factory(10)->create();
 
+        $this->call([
+            RoleSeed::class
+        ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
