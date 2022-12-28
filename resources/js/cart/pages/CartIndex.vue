@@ -1,7 +1,10 @@
 <template>
     <div class="container py-4">
         <div class="card mb-4">
-            <h3 class="card-header">Carrito</h3>
+            <div class="card-header d-flex justify-content-between">
+                <h3>Carrito</h3>
+                <button class="btn btn-primary" @click="handleGoBack">Volver</button>
+            </div>
             <h3
                 class="card-body d-flex flex-column align-items-center"
                 v-if="!userCart || userCart.length === 0"
@@ -16,6 +19,10 @@
                     @delete-item="handleDeleteItem"
                 />
             </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <strong>Total: </strong>
+                <span class="text-muted">{{ cartTotal }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -26,6 +33,13 @@
 
     export default {
         components: { CartItem },
+        computed: {
+            cartTotal() {
+                return this.userCart.reduce((acc, { quantity, price }) => {
+                    return (acc += quantity * price)
+                }, 0)
+            }
+        },
         created() {
             this.userCart = getUserCart(this.userAuthInfo.id)
         },
@@ -36,9 +50,11 @@
         },
         methods: {
             handleDeleteItem(itemId) {
-                console.log('fui llamado desde: ', itemId)
                 this.userCart = this.userCart.filter(item => item.id !== itemId)
                 setUserCart(this.userAuthInfo.id, this.userCart)
+            },
+            handleGoBack() {
+                window.history.back(1)
             }
         },
         props: {

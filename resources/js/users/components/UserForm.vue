@@ -143,7 +143,6 @@
         },
         mounted() {
             this.form = { ...this.userInfo, role: this.userInfo.roles?.[0].name || '' }
-            console.log(this.userInfo)
         },
         props: {
             creating: {

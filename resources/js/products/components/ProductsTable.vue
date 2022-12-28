@@ -68,8 +68,7 @@
             },
             async deleteProductRequest(productId) {
                 try {
-                    const { data } = await axios.delete(`/products/delete/${productId}`)
-                    console.log(data)
+                    await axios.delete(`/products/delete/${productId}`)
                 } catch (error) {
                     console.error(error)
                 }
@@ -78,7 +77,6 @@
         mounted() {
             this.productsArr = this.products
             this.dataTable = this.mountDataTable()
-            console.log(this.productsArr)
         }
     }
 </script>
