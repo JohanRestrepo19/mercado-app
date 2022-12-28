@@ -28,7 +28,7 @@ Route::group(['prefix' => '/test'], function () {
 Route::get('/', [CategoryController::class, 'showAllCategoriesWithProducts'])->name('home');
 
 // NOTE: Users routing
-Route::group(['prefix' => '/users', 'controller' => UserController::class], function () {
+Route::group(['prefix' => '/users', 'middleware' => ['role:admin'], 'controller' => UserController::class], function () {
     Route::get('/', 'index')->name('users');
     Route::get('/create', 'create');
     Route::post('/create', 'store');
@@ -38,28 +38,26 @@ Route::group(['prefix' => '/users', 'controller' => UserController::class], func
 });
 
 // NOTE: Products routing
-Route::group(['prefix' => '/products', 'controller' => ProductController::class], function () {
-    Route::get('/', 'index')->name('products');
-    Route::get('/create', 'create');
-    Route::post('/create', 'store');
-    Route::delete('/delete/{product}', 'delete');
-    Route::get('/{product}/edit', 'edit');
-    Route::post('/{product}', 'update');
+Route::group(['prefix' => '/products',  'controller' => ProductController::class], function () {
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/', 'index')->name('products');
+        Route::get('/create', 'create');
+        Route::post('/create', 'store');
+        Route::delete('/delete/{product}', 'delete');
+        Route::get('/{product}/edit', 'edit');
+        Route::post('/{product}', 'update');
+    });
     Route::get('/{product}', 'show');
 });
 
 // NOTE: Cart routing
-Route::group(['prefix' => '/cart', 'controller' => CartController::class], function () {
+Route::group(['prefix' => '/cart', 'middleware' => ['role:admin|user'], 'controller' => CartController::class], function () {
     Route::get('/', 'index')->name('cart');
 });
 
 // NOTE: Categories routing
 Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
     Route::get('/{category}', 'showCategoryWithProducts');
-});
-
-// NOTE: Sales routing
-Route::group(['prefix' => '/sales', 'controller' => SaleController::class], function () {
 });
 
 Auth::routes();
