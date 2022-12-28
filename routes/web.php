@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
@@ -45,6 +46,11 @@ Route::group(['prefix' => '/products', 'controller' => ProductController::class]
     Route::get('/{product}/edit', 'edit');
     Route::post('/{product}', 'update');
     Route::get('/{product}', 'show');
+});
+
+// NOTE: Cart routing
+Route::group(['prefix' => '/cart', 'controller' => CartController::class], function () {
+    Route::get('/', 'index')->name('cart');
 });
 
 // NOTE: Categories routing

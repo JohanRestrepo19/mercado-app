@@ -10,6 +10,7 @@ import ProductIndex from './products/pages/ProductIndex.vue'
 import ProductCreate from './products/pages/ProductCreate.vue'
 import ProductEdit from './products/pages/ProductEdit.vue'
 import ProductShow from './products/pages/ProductShow.vue'
+import CartIndex from './cart/pages/CartIndex.vue'
 
 const app = createApp({
     components: {
@@ -21,7 +22,8 @@ const app = createApp({
         ProductIndex,
         ProductCreate,
         ProductEdit,
-        ProductShow
+        ProductShow,
+        CartIndex
     }
 })
 

@@ -12,6 +12,13 @@ export const addProductToCart = (product, userId) => {
     localStorage.setItem(userId, JSON.stringify(userNewCart, null, 2))
 }
 
-export const getCart = () => {}
+export const getUserCart = userId => {
+    const userCart = JSON.parse(localStorage.getItem(userId))
+    return userCart
+}
+
+export const setUserCart = (userId, cart) => {
+    localStorage.setItem(userId, JSON.stringify(cart, null, 2))
+}
 
 export const cleanCart = () => {}

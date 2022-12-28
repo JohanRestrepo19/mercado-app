@@ -15,9 +15,11 @@
                     />
                 </div>
                 <!-- Quantity -->
-                <div>
+                <div class="btn-group d-block">
                     <button class="btn btn-primary" @click="handleClickSub">-</button>
-                    <strong class="btn" @click="handleClickReset">{{ quantity }}</strong>
+                    <button class="btn btn-secondary" @click="handleClickReset">
+                        {{ quantity }}
+                    </button>
                     <button class="btn btn-primary" @click="handleClickAdd">+</button>
                 </div>
                 <!-- <a href="#" class="btn btn-success mt-4">Añadir al carrito</a> -->

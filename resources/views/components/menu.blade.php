@@ -35,6 +35,12 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                        <!-- Cart -->
+                        <a class="dropdown-item" href="{{ route('cart') }}">
+                            Carrito
+                        </a>
+
                         <!-- Users table -->
                         <a class="dropdown-item" href="{{ route('users') }}">
                             Usuarios
