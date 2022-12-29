@@ -13,6 +13,7 @@
             "
             class="card-img-top"
             alt="..."
+            height="340"
         />
         <div class="card-body">
             <h5 class="card-title fw-bold">{{ product.name }}</h5>
