@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -56,5 +57,33 @@ class CategoryController extends Controller
             })
             ->rawColumns(['actions'])
             ->make();
+    }
+
+    public function create()
+    {
+        return view('categories.create');
+    }
+
+    public function store(CategoryRequest $request)
+    {
+        $category = new Category($request->all());
+        $category->save();
+        return response()->json(['category' => $category]);
+    }
+
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(Category $category, CategoryRequest $request)
+    {
+        $category->update($request->all());
+        return response()->json(['category' => $category->refresh()]);
+    }
+    public function delete(Category $category)
+    {
+        $result = $category->delete();
+        return response()->json(['result' => $result]);
     }
 }

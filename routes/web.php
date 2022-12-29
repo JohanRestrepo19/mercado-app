@@ -3,7 +3,6 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,11 +55,17 @@ Route::group(['prefix' => '/cart', 'middleware' => ['role:admin|user'], 'control
     Route::get('/{item}', 'getCartItemImage');
 });
 
-// NOTE: Categories routing
+// NOTE: Categories routing.
+// TODO: Asignar los roles que pueden ver las categorias.
 Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
     Route::get('/', 'index')->name('categories');
     Route::get('/categoriesForDataTable', 'getCategoriesForDataTable');
+    Route::get('/create', 'create');
+    Route::post('/create', 'store');
     Route::get('/{category}', 'showCategoryWithProducts');
+    Route::get('/{category}/edit', 'edit');
+    Route::post('/{category}', 'update');
+    Route::delete('/delete/{category}', 'delete');
 });
 
 Auth::routes();
