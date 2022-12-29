@@ -53,6 +53,7 @@ Route::group(['prefix' => '/products',  'controller' => ProductController::class
 // NOTE: Cart routing
 Route::group(['prefix' => '/cart', 'middleware' => ['role:admin|user'], 'controller' => CartController::class], function () {
     Route::get('/', 'index')->name('cart');
+    Route::get('/{item}', 'getCartItemImage');
 });
 
 // NOTE: Categories routing

@@ -4,8 +4,8 @@
             <div class="col-md-4">
                 <img
                     :src="
-                        item.image
-                            ? `/storage/images/${item.image}`
+                        itemImage
+                            ? `/storage/images/${itemImage}`
                             : 'https://api.lorem.space/image/book?w=200'
                     "
                     class="img-fluid rounded-start"
@@ -35,9 +35,18 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
+        async created() {
+            const {
+                data: { image }
+            } = await axios.get(`/cart/${this.item.id}`)
+            this.itemImage = image
+        },
         data() {
-            return {}
+            return {
+                itemImage: ''
+            }
         },
         emits: ['deleteItem'],
         props: {

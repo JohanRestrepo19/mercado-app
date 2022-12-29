@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,5 +16,9 @@ class CartController extends Controller
 
         return view('cart.index', compact('userAuthInfo'));
         /* return view('cart.index', compact('userId')); */
+    }
+    public function getCartItemImage(Product $item)
+    {
+        return response()->json(['image' => $item->image]);
     }
 }
