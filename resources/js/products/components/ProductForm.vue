@@ -11,7 +11,12 @@
         </div>
         <div class="card-body">
             <!-- Create product form -->
-            <form class="mx-4" @submit.prevent="handleSubmit" ref="form">
+            <form
+                class="mx-4"
+                @submit.prevent="handleSubmit"
+                ref="form"
+                enctype="multipart/form-data"
+            >
                 <!-- Name -->
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre</label>
@@ -27,6 +32,18 @@
                         v-model="form.description"
                     ></textarea>
                     <!-- <input type="text" name="last_name" class="form-control" id="last_name" v-model="form.last_name" /> -->
+                </div>
+
+                <!-- Image -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">Imagen</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        id="file"
+                        accept="image/*"
+                        @change="handleLoadImage"
+                    />
                 </div>
 
                 <!-- Category Id -->
@@ -83,7 +100,8 @@
         description: '',
         category_id: '',
         price: '',
-        stock: ''
+        stock: '',
+        image: null
     }
 
     export default {
@@ -103,17 +121,26 @@
             async handleSubmit() {
                 this.errors = null
                 try {
+                    // Make form data for loading image data
+                    let fd = new FormData()
+                    for (let [key, value] of Object.entries(this.form)) {
+                        fd.append(key, value)
+                    }
+
                     if (this.creating) {
-                        await axios.post('/products/create', this.form)
+                        await axios.post('/products/create', fd)
                         showToastNotification('Producto creado!')
                         this.$refs.form.reset()
                     } else {
-                        await axios.post(`/products/${this.productInfo.id}`, this.form)
+                        await axios.post(`/products/${this.productInfo.id}`, fd)
                         showToastNotification('Producto editado!')
                     }
                 } catch (error) {
                     this.errors = error.response.data.errors
                 }
+            },
+            handleLoadImage(event) {
+                this.form.image = event.target.files[0]
             }
         },
         mounted() {

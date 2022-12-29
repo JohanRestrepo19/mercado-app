@@ -9,9 +9,14 @@
                 </p>
                 <div class="p-2">
                     <img
-                        src="https://api.lorem.space/image/book?w=200"
+                        :src="
+                            product.image
+                                ? `/storage/images/${product.image}`
+                                : 'https://api.lorem.space/image/book?w=200'
+                        "
                         class="border border-3 rounded p-2 styled-img"
                         alt="..."
+                        width="340"
                     />
                 </div>
                 <!-- Quantity -->
@@ -78,6 +83,9 @@
             handleClickGoToCart() {
                 window.location = '/cart'
             }
+        },
+        mounted() {
+            console.log(this.product)
         },
         props: ['product', 'authentication']
     }

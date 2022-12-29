@@ -3,7 +3,11 @@
         <div class="row g-0">
             <div class="col-md-4">
                 <img
-                    src="https://api.lorem.space/image/book?w=200"
+                    :src="
+                        item.image
+                            ? `/storage/images/${item.image}`
+                            : 'https://api.lorem.space/image/book?w=200'
+                    "
                     class="img-fluid rounded-start"
                     alt="..."
                 />

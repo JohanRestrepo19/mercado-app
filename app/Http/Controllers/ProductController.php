@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,7 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request)
     {
         $product = new Product($request->all());
+        $this->uploadImage($request, $product);
         $product->save();
         return response()->json(['product' => $product]);
     }
@@ -55,5 +57,14 @@ class ProductController extends Controller
             'userId' => Auth::id()
         ];
         return view('products.show', compact('product', 'userAuthInfo'));
+    }
+
+    private function uploadImage($request, &$product)
+    {
+        if (!isset($request->image)) return;
+        $randomString = Str::random(20);
+        $imageName = "{$randomString}.{$request->image->clientExtension()}";
+        $request->image->move(storage_path('app/public/images'), $imageName);
+        $product->image = $imageName;
     }
 }

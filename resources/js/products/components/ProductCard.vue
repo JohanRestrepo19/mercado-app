@@ -5,7 +5,15 @@
         style="width: 15rem"
         @click="handleClickCard(this.product.id)"
     >
-        <img src="https://api.lorem.space/image/book?w=200" class="card-img-top" alt="..." />
+        <img
+            :src="
+                product.image
+                    ? `/storage/images/${product.image}`
+                    : 'https://api.lorem.space/image/book?w=200'
+            "
+            class="card-img-top"
+            alt="..."
+        />
         <div class="card-body">
             <h5 class="card-title fw-bold">{{ product.name }}</h5>
             <p class="card-text">
