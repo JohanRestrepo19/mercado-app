@@ -144,7 +144,7 @@
             }
         },
         mounted() {
-            this.form = this.productInfo
+            this.form = { ...this.productInfo, image: null }
         },
         props: {
             creating: {

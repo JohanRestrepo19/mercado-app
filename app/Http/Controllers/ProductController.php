@@ -45,7 +45,10 @@ class ProductController extends Controller
 
     public function update(Product $product, CreateProductRequest $request)
     {
-        $product->update($request->all());
+        $allRequestInputs = $request->all();
+        $this->uploadImage($request, $product);
+        $allRequestInputs['image'] = $product->image;
+        $product->update($allRequestInputs);
         return response()->json(['product' => $product->refresh()]);
     }
 
@@ -62,6 +65,7 @@ class ProductController extends Controller
     private function uploadImage($request, &$product)
     {
         if (!isset($request->image)) return;
+        if ($request->image === "null") return;
         $randomString = Str::random(20);
         $imageName = "{$randomString}.{$request->image->clientExtension()}";
         $request->image->move(storage_path('app/public/images'), $imageName);
