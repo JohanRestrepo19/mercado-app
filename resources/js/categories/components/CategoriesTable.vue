@@ -27,8 +27,7 @@
         methods: {
             mountDataTable() {
                 this.$nextTick(() => {
-                    // NOTE: Posible breking point
-                    return new DataTable('#categoriesTable', {
+                    this.dataTable = new DataTable('#categoriesTable', {
                         processing: true,
                         serverSide: true,
                         ajax: {
@@ -52,7 +51,7 @@
                 if (confirmation) {
                     try {
                         await axios.delete(`/categories/delete/${categoryId}`)
-                        this.dataTable.destroy()
+                        this.dataTable.ajax.reload()
                     } catch (error) {
                         console.error(error)
                     }
@@ -75,8 +74,8 @@
                 }
             }
         },
-        mounted() {
-            this.dataTable = this.mountDataTable()
+        async mounted() {
+            this.mountDataTable()
         }
     }
 </script>
