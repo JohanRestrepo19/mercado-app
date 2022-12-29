@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
@@ -20,8 +19,9 @@ class CategoryController extends Controller
         $categories = Category::with('products')
             ->get()
             ->map(function ($category) {
-                $randomProducts = $category->products->random(4);
-                return [...$category->toArray(), 'products' => $randomProducts];
+                if ($category->products->count() > 5) $newProducts = $category->products->random(4);
+                else $newProducts = $category->products;
+                return [...$category->toArray(), 'products' => $newProducts];
             });
         return $categories;
     }
