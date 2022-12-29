@@ -6,32 +6,37 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('products', function (Blueprint $table) {
-			$table->id();
-			$table->bigInteger('category_id')->unsigned();
-			$table->string('name');
-			$table->text('description');
-			$table->float('price', 10, 2);
-			$table->integer('stock')->unsigned();
-			$table->timestamps();
-			$table->softDeletes();
-		});
-	}
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('category_id')->unsigned();
+            $table->string('name');
+            $table->text('description');
+            $table->float('price', 10, 2);
+            $table->integer('stock')->unsigned();
+            $table->timestamps();
+            $table->softDeletes();
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::dropIfExists('products');
-	}
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('products');
+    }
 };

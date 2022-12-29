@@ -58,6 +58,8 @@ Route::group(['prefix' => '/cart', 'middleware' => ['role:admin|user'], 'control
 
 // NOTE: Categories routing
 Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
+    Route::get('/', 'index')->name('categories');
+    Route::get('/categoriesForDataTable', 'getCategoriesForDataTable');
     Route::get('/{category}', 'showCategoryWithProducts');
 });
 

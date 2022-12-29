@@ -43,6 +43,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('products') }}">Productos</a>
                 </li>
+
+                <!-- Products table -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories') }}">Categorias</a>
+                </li>
                 @endrole
 
                 <li class="nav-item dropdown">
