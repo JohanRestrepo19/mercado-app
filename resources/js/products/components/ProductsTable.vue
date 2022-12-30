@@ -16,7 +16,7 @@
                 <tr v-for="product in productsArr" :key="product.id">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.category.name }}</td>
+                    <td>{{ product.category?.name }}</td>
                     <td>{{ product.short_description }}</td>
                     <td>{{ product.price }}</td>
                     <td>{{ product.stock }}</td>
