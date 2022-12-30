@@ -84,9 +84,6 @@
                 window.location = '/cart'
             }
         },
-        mounted() {
-            console.log(this.product)
-        },
         props: ['product', 'authentication']
     }
 </script>

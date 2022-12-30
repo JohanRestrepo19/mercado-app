@@ -58,7 +58,6 @@ Route::group(['prefix' => '/cart', 'middleware' => ['role:admin|user'], 'control
 });
 
 // NOTE: Categories routing.
-// TODO: Asignar los roles que pueden ver las categorias.
 Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
 
     Route::group(['middleware' => ['role:admin']], function () {

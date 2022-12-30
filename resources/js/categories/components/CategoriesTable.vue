@@ -45,7 +45,6 @@
                     })
                 })
             },
-            //TODO: Cambiar la implementación de la eliminicación.
             async handleClickDelete(categoryId) {
                 const confirmation = await showConfirmationAlert()
                 if (confirmation) {
@@ -58,13 +57,9 @@
                 }
                 return
             },
-
-            //TODO: Implementar la logica de edición.
             async handleClickEdit(categoryId) {
                 window.location = `/categories/${categoryId}/edit`
             },
-            //TODO: Cambiar la request para la eliminicación.
-
             getEvent(event) {
                 const button = event.target
                 if (button.getAttribute('role') === 'edit') {
