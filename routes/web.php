@@ -38,6 +38,7 @@ Route::group(['prefix' => '/users', 'middleware' => ['role:admin'], 'controller'
 
 // NOTE: Products routing
 Route::group(['prefix' => '/products',  'controller' => ProductController::class], function () {
+
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/', 'index')->name('products');
         Route::get('/create', 'create');
@@ -46,6 +47,7 @@ Route::group(['prefix' => '/products',  'controller' => ProductController::class
         Route::get('/{product}/edit', 'edit');
         Route::post('/{product}', 'update');
     });
+
     Route::get('/{product}', 'show');
 });
 
@@ -58,14 +60,18 @@ Route::group(['prefix' => '/cart', 'middleware' => ['role:admin|user'], 'control
 // NOTE: Categories routing.
 // TODO: Asignar los roles que pueden ver las categorias.
 Route::group(['prefix' => '/categories', 'controller' => CategoryController::class], function () {
-    Route::get('/', 'index')->name('categories');
-    Route::get('/categoriesForDataTable', 'getCategoriesForDataTable');
-    Route::get('/create', 'create');
-    Route::post('/create', 'store');
+
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/', 'index')->name('categories');
+        Route::get('/categoriesForDataTable', 'getCategoriesForDataTable');
+        Route::get('/create', 'create');
+        Route::post('/create', 'store');
+        Route::get('/{category}/edit', 'edit');
+        Route::post('/{category}', 'update');
+        Route::delete('/delete/{category}', 'delete');
+    });
+
     Route::get('/{category}', 'showCategoryWithProducts');
-    Route::get('/{category}/edit', 'edit');
-    Route::post('/{category}', 'update');
-    Route::delete('/delete/{category}', 'delete');
 });
 
 Auth::routes();

@@ -61,7 +61,7 @@
 
             //TODO: Implementar la logica de edición.
             async handleClickEdit(categoryId) {
-                console.log('estoy siendo editado', categoryId)
+                window.location = `/categories/${categoryId}/edit`
             },
             //TODO: Cambiar la request para la eliminicación.
 
