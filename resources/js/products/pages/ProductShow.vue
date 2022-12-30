@@ -1,7 +1,14 @@
 <template>
     <div class="container py-4">
         <div class="card text-center">
-            <div class="card-header">{{ product.category.name }}</div>
+            <a
+                class="card-header text-decoration-none"
+                :href="`/categories/${product.category.id}`"
+            >
+                <h3>
+                    {{ product.category.name }}
+                </h3>
+            </a>
             <div class="card-body">
                 <h5 class="card-title text-bold">{{ product.name }}</h5>
                 <p class="card-text text-muted">

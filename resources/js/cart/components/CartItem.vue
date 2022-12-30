@@ -14,7 +14,9 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.name }}</h5>
+                    <h4 class="card-title">
+                        <strong> {{ item.name }}</strong>
+                    </h4>
                     <p class="card-text">
                         {{ item.short_description }}
                     </p>

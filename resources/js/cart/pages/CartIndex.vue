@@ -3,7 +3,7 @@
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <h3>Carrito</h3>
-                <button class="btn btn-primary" @click="handleGoBack">Volver</button>
+                <a class="btn btn-primary" href="/">Volver al inicio</a>
             </div>
             <h3
                 class="card-body d-flex flex-column align-items-center"
@@ -52,9 +52,6 @@
             handleDeleteItem(itemId) {
                 this.userCart = this.userCart.filter(item => item.id !== itemId)
                 setUserCart(this.userAuthInfo.id, this.userCart)
-            },
-            handleGoBack() {
-                window.history.back(1)
             }
         },
         props: {
