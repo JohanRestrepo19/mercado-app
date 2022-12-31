@@ -11,7 +11,7 @@
             >
                 No tienes productos en el carrito
             </h3>
-            <div class="card-body d-flex flex-column align-items-center" v-else>
+            <div class="card-body container" v-else>
                 <cart-item
                     v-for="item in userCart"
                     :key="item.id"

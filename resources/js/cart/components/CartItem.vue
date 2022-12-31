@@ -1,5 +1,5 @@
 <template>
-    <div class="card mb-4" style="width: 540px">
+    <div class="card m-4 row p-4">
         <div class="row g-0">
             <div class="col-md-4">
                 <img
@@ -8,7 +8,7 @@
                             ? `/storage/images/${itemImage}`
                             : 'https://api.lorem.space/image/book?w=200'
                     "
-                    class="img-fluid rounded-start"
+                    class="img-fluid rounded-start mx-auto d-block"
                     alt="..."
                 />
             </div>
