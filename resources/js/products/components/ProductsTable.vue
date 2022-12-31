@@ -54,7 +54,6 @@
         methods: {
             mountDataTable() {
                 this.$nextTick(() => {
-                    // NOTE: Posible breking point
                     return new DataTable('#productsTable')
                 })
             },
