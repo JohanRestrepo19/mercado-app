@@ -1,7 +1,7 @@
 <template>
     <div class="card mb-4">
         <a class="text-decoration-none" :href="`/categories/${category.id}`">
-            <h2 class="card-header">{{ category.name }}</h2>
+            <h2 class="card-header text-bg-warning">{{ category.name }}</h2>
         </a>
         <div class="d-flex flex-wrap justify-content-evenly mb-4">
             <!-- Product Card -->

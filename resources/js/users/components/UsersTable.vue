@@ -19,7 +19,7 @@
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.email }}</td>
                     <td class="d-flex">
-                        <a class="btn btn-info mx-2" :href="`/users/${user.id}/edit`">Editar</a>
+                        <a class="btn btn-warning mx-2" :href="`/users/${user.id}/edit`">Editar</a>
                         <button
                             @click="handleClickDelete(user.id)"
                             type="button"

@@ -21,7 +21,7 @@
                     <td>{{ product.price }}</td>
                     <td>{{ product.stock }}</td>
                     <td class="d-flex">
-                        <a class="btn btn-info m-2" :href="`/products/${product.id}/edit`"
+                        <a class="btn btn-warning m-2" :href="`/products/${product.id}/edit`"
                             >Editar</a
                         >
                         <button

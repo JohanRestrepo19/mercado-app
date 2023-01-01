@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card text-center">
             <a
-                class="card-header text-decoration-none"
+                class="card-header text-bg-warning text-decoration-none"
                 :href="`/categories/${product.category.id}`"
             >
                 <h3>
@@ -29,12 +29,11 @@
                 <!-- Quantity -->
                 <div class="btn-group d-block">
                     <button class="btn btn-primary" @click="handleClickSub">-</button>
-                    <button class="btn btn-secondary" @click="handleClickReset">
+                    <button class="btn btn-light" @click="handleClickReset">
                         {{ quantity }}
                     </button>
                     <button class="btn btn-primary" @click="handleClickAdd">+</button>
                 </div>
-                <!-- <a href="#" class="btn btn-success mt-4">Añadir al carrito</a> -->
                 <div class="btn-group">
                     <button class="btn btn-success mt-4" @click="handleClickAddToCart">
                         Añadir al carrito

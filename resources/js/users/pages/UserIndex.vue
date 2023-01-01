@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="card m-5">
-            <div class="card-header d-flex justify-content-between">
+            <div class="card-header text-bg-warning d-flex justify-content-between">
                 <h2>Usuarios</h2>
                 <a href="/users/create" class="btn btn-primary"> Crear usuario </a>
             </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between">
+            <div class="card-header text-bg-warning d-flex justify-content-between">
                 <h3>Carrito</h3>
                 <a class="btn btn-primary" href="/">Volver al inicio</a>
             </div>
