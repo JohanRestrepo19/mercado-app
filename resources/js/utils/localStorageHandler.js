@@ -20,4 +20,4 @@ export const setUserCart = (userId, cart) => {
     localStorage.setItem(userId, JSON.stringify(cart, null, 2))
 }
 
-export const cleanCart = () => { }
+export const cleanCart = () => {}

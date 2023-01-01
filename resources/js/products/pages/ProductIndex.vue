@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import ProductsTable from '../components/ProductsTable.vue'
-export default {
-    components: { ProductsTable },
-    data() {
-        return {}
-    },
-    mounted() { },
-    props: ['products']
-}
+    import ProductsTable from '../components/ProductsTable.vue'
+    export default {
+        components: { ProductsTable },
+        data() {
+            return {}
+        },
+        mounted() {},
+        props: ['products']
+    }
 </script>
