@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-4">
+    <div class="container">
         <user-form :creating="false" :roles="roles" :userInfo="user" />
     </div>
 </template>

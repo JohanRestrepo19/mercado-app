@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-4">
+    <div class="container">
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <h3>Carrito</h3>

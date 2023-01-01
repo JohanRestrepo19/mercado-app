@@ -24,7 +24,7 @@
 <body>
     <x-menu />
     <main id="app">
-        <div class="contianer ">
+        <div class="contianer py-4">
             {{$slot}}
         </div>
     </main>

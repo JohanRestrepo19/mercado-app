@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-4">
+    <div class="container">
         <product-form :categories="categories" />
     </div>
 </template>

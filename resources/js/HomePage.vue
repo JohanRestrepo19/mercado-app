@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-4">
+    <div class="container">
         <!-- Category row -->
         <category-card v-for="category in categories" :key="category.id" :category="category" />
     </div>
