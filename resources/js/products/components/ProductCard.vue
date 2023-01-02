@@ -7,7 +7,7 @@
     >
         <img
             :src="
-                product.image
+                product.has_image
                     ? `/storage/images/${product.image}`
                     : 'https://api.lorem.space/image/book?w=200'
             "
@@ -33,6 +33,9 @@
             async handleClickCard(productId) {
                 window.location = `/products/${productId}`
             }
+        },
+        mounted() {
+            console.log(this.product)
         },
         props: {
             product: Object,

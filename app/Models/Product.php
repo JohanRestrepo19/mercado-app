@@ -24,7 +24,7 @@ class Product extends Model
         'stock',
     ];
 
-    protected $appends = ['short_description'];
+    protected $appends = ['short_description', 'has_image'];
 
     // NOTE: Accesors
     public function getShortDescriptionAttribute()
@@ -32,6 +32,13 @@ class Product extends Model
         $short = str($this->description)->substr(0, 27);
         return "{$short}...";
     }
+
+    public function getHasImageAttribute()
+    {
+        if ($this->image === "null" || !$this->image) return false;
+        return true;
+    }
+
 
     // NOTE: Relationships
     public function category()

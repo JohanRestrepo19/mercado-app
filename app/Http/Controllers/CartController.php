@@ -17,8 +17,14 @@ class CartController extends Controller
         return view('cart.index', compact('userAuthInfo'));
         /* return view('cart.index', compact('userId')); */
     }
+
     public function getCartItemImage(Product $item)
     {
-        return response()->json(['image' => $item->image]);
+        return response()->json([
+            'image' => [
+                'name' => $item->image,
+                'has_image' => $item->has_image
+            ]
+        ]);
     }
 }

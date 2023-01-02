@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function getAllCategoriesPreview()
     {
-        $categories = Category::with('products')
+        $categories = Category::has('products')
             ->get()
             ->map(function ($category) {
                 if ($category->products->count() > 5) $newProducts = $category->products->random(4);

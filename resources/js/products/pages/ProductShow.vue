@@ -17,7 +17,7 @@
                 <div class="p-2">
                     <img
                         :src="
-                            product.image
+                            product.has_image
                                 ? `/storage/images/${product.image}`
                                 : 'https://api.lorem.space/image/book?w=200'
                         "
