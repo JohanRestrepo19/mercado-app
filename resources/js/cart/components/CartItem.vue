@@ -43,7 +43,6 @@
             const {
                 data: { image }
             } = await axios.get(`/cart/${this.item.id}`)
-            console.log(image)
             this.itemImage = image
         },
         data() {

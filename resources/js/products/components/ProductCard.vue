@@ -34,9 +34,6 @@
                 window.location = `/products/${productId}`
             }
         },
-        mounted() {
-            console.log(this.product)
-        },
         props: {
             product: Object,
             shortDesc: {
