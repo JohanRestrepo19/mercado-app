@@ -16,7 +16,8 @@ class CategoryController extends Controller
 
     public function getAllCategoriesPreview()
     {
-        $categories = Category::has('products')
+        $categories = Category::with(['products' => fn ($query) => $query->where('stock', '>', '0')])
+            ->has('products')
             ->get()
             ->map(function ($category) {
                 if ($category->products->count() > 5) $newProducts = $category->products->random(4);
@@ -28,7 +29,7 @@ class CategoryController extends Controller
 
     public function showCategoryWithProducts(Category $category)
     {
-        $category->load('products');
+        $category->load(['products' => fn ($query) => $query->where('stock', '>', '0')]);
         return view('categories.category-page', compact('category'));
     }
 
