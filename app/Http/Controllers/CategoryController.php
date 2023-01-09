@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
@@ -82,9 +84,25 @@ class CategoryController extends Controller
         $category->update($request->all());
         return response()->json(['category' => $category->refresh()]);
     }
+
     public function delete(Category $category)
     {
         $result = $category->delete();
         return response()->json(['result' => $result]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Methods.
+    |--------------------------------------------------------------------------
+    | Here is where all logic for ProductController related to api
+    | is going to be.
+    |
+    */
+
+    public function categoriesPreview(Request $request)
+    {
+        $request['wants_random'] = true;
+        return CategoryResource::collection(Category::all());
     }
 }

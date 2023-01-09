@@ -24,4 +24,12 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
+
+    public function randomProducts()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id')
+            ->inRandomOrder()
+            ->where('stock', '>', '0')
+            ->limit(4);
+    }
 }

@@ -71,4 +71,13 @@ class ProductController extends Controller
         $request->image->move(storage_path('app/public/images'), $imageName);
         $product->image = $imageName;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Methods.
+    |--------------------------------------------------------------------------
+    | Here is where all logic for ProductController related to api
+    | is going to be.
+    |
+    */
 }
